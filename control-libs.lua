@@ -32,16 +32,16 @@ for eventName,called_function in pairs(custom_events or {}) do
 end
 
 script.on_init(function()
-	if initcommands then initcommands() end
-	if mod_on_init then mod_on_init(true) end
-	if init_remote then init_remote() end
+	for _,f in pairs(list_events.on_init) do
+		f()
+	end
 end)
 
 script.on_load(function()
-	if initcommands then initcommands() end
-	if mod_on_init then mod_on_init(false) end
-	if init_remote then init_remote() end
 	init_custom_data()
+	for _,f in pairs(list_events.on_load) do
+		f()
+	end
 end)
 
 ---------------------------------------------------
