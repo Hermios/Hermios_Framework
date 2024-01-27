@@ -5,7 +5,7 @@ require "runtime-stage-libs"
 
 global.custom_entities=global.custom_entities or {}
 custom_prototypes={}
-list_events={on_removed={},on_built={}}
+list_events={on_init={},on_load={},on_removed={},on_built={}}
 
 --Initial loading scripts
 for eventname,_ in pairs(defines.events) do
