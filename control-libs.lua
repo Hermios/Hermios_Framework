@@ -101,6 +101,7 @@ table.insert(list_events.on_removed,function(entity)
 		global.custom_entities[entity.unit_number]=nil
 	end
 end)
+
 ---------------------------------------------------
 -- Train
 ---------------------------------------------------
