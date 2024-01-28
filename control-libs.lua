@@ -32,6 +32,7 @@ for eventName,called_function in pairs(custom_events or {}) do
 end
 
 script.on_init(function()
+	init_custom_data()
 	for _,f in pairs(list_events.on_init) do
 		f()
 	end
@@ -90,13 +91,10 @@ table.insert(list_events.on_pre_player_mined_item,function (event)
 end)
 
 table.insert(list_events.on_removed,function(entity)
-	entity=global.custom_entities[entity.unit_number]
-	if not entity or not entity.valid then
-		return
-	end
-	if entity then
-		if entity.on_removed then
-			entity:on_removed()
+	custom_entity=global.custom_entities[entity.unit_number]
+	if custom_entity then
+		if custom_entity.on_removed then
+			custom_entity:on_removed()
 		end
 		global.custom_entities[entity.unit_number]=nil
 	end
