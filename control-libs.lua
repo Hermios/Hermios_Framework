@@ -11,11 +11,13 @@ list_events={on_init={},on_load={},on_removed={},on_built={}}
 for eventname,_ in pairs(defines.events) do
 	list_events[eventname]={}
 	script.on_event(defines.events[eventname], function(event)
-		if eventname=="on_tick" and game.players[1].mod_settings[modname.."check_delay"] and event.tick%game.players[1].mod_settings[modname.."_check_delay"].value>0 then
-			return
-		end
-		if custom_technology and not game.players[1].force.technologies[custom_technology].researched then
-			return
+		if game.get_player(1) then
+			if eventname=="on_tick" and game.get_player(1).mod_settings[modname.."check_delay"] and event.tick%game.players[1].mod_settings[modname.."_check_delay"].value>0 then
+				return
+			end
+			if technology and not game.get_player(1).force.technologies[technology].researched then
+				return
+			end
 		end
 		for _,f in pairs(list_events[eventname]) do
 			f(event)
@@ -24,7 +26,7 @@ for eventname,_ in pairs(defines.events) do
 end
 for eventName,called_function in pairs(custom_events or {}) do
 	script.on_event(eventName,function(event)
-		if custom_technology and not game.players[1].force.technologies[custom_technology].researched then
+		if technology and not game.players[1].force.technologies[technology].researched then
 			return
 		end
 		if called_function then called_function(event) end

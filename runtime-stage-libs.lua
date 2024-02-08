@@ -22,7 +22,7 @@ local function get_custom_table(entity,custom_table)
 		if custom_table[entity.name] then
 			return custom_table[entity.name],entity.name
 		end
-		if custom_table[entity.type] then
+		if custom_table[entity.type] and not custom_table[entity.type].only_name then
 			return custom_table[entity.type],entity.type
 		end
 		if entity.train and custom_table["train"] then
