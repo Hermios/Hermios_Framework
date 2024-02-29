@@ -29,7 +29,7 @@ issues=dict()
 for issueNumber in list(map(lambda issue: int(issue.split("#")[1]),json.loads(os.environ["LIST_ISSUES"]))):
     issue=repo.get_issue(issueNumber)
     issues.setdefault(issue.labels[0].name,[])
-    issues[issue.labels[0].name].append(f'{issue.title}[{issue.url}]')
+    issues[issue.labels[0].name].append(f'[{issue.title}]({issue.url})')
 
 ################################# Set new release ###############################
 # Set new repo_release_data
