@@ -12,9 +12,6 @@ for eventname,_ in pairs(defines.events) do
 	list_events[eventname]={}
 	script.on_event(defines.events[eventname], function(event)
 		if game.get_player(1) then
-			if eventname=="on_tick" and game.get_player(1).mod_settings[modname.."check_delay"] and event.tick%game.players[1].mod_settings[modname.."_check_delay"].value>0 then
-				return
-			end
 			if technology and not game.get_player(1).force.technologies[technology].researched then
 				return
 			end
@@ -69,12 +66,6 @@ end)
 -- On entity removed
 ---------------------------------------------------
 table.insert(list_events.on_robot_pre_mined,function (event)
-	for _,f in pairs(list_events.on_removed) do
-		f(event.entity)
-	end
-end)
-
-table.insert(list_events.on_entity_destroyed,function (event)
 	for _,f in pairs(list_events.on_removed) do
 		f(event.entity)
 	end
@@ -137,7 +128,7 @@ function on_built(entity)
 			custom_entity.prototype_index=index
 			setmetatable(custom_entity, custom_prototype)
 			custom_prototype.__index=custom_prototype
-			end
+		end
 		if custom_entity.on_built then
 			custom_entity:on_built()
 		end
