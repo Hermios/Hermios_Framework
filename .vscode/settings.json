@@ -28,7 +28,8 @@
 		"__Profiler",
 		"on_removed",
 		"custom_technology",
-		"custom_events"
+		"custom_events",
+		"technology"
 	],
 	"Lua.workspace.ignoreDir": [
 			".vscode",
