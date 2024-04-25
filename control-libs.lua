@@ -74,12 +74,6 @@ table.insert(list_events.on_robot_pre_mined,function (event)
 	end
 end)
 
-table.insert(list_events.on_entity_destroyed,function (event)
-	for _,f in pairs(list_events.on_removed) do
-		f(event.entity)
-	end
-end)
-
 table.insert(list_events.on_entity_died,function (event)
 	for _,f in pairs(list_events.on_removed) do
 		f(event.entity)
