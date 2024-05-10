@@ -83,6 +83,12 @@ table.insert(list_events.on_pre_player_mined_item,function (event)
 	end
 end)
 
+table.insert(list_events.script_raised_destroy,function (event)
+	for _,f in pairs(list_events.on_removed) do
+		f(event.entity)
+	end
+end)
+
 table.insert(list_events.on_removed,function(entity)
 	custom_entity=global.custom_entities[entity.unit_number]
 	if custom_entity then
